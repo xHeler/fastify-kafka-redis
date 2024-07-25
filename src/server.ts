@@ -1,8 +1,13 @@
 import Fastify, { FastifyInstance } from 'fastify';
+import examplePlugin from './plugins/sample-plugin';
+import exampleRoute from './routes/sample-route';
 
 const server: FastifyInstance = Fastify({
   logger: true
 });
+
+server.register(examplePlugin);
+server.register(exampleRoute);
 
 server.get('/', async (request, reply) => {
   return { hello: 'world' };
